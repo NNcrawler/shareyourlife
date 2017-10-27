@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cors = require('cors')
+const checkLogin = require('./helper/checkLogin');
 const Storage = require('@google-cloud/storage')
 const simpan = Storage()
 const mongoose = require('mongoose')
@@ -16,7 +17,8 @@ var users = require('./routes/users');
 var stor = require('./routes/storageRoute')
 
 var app = express();
-
+app.use(cors())
+//app.use(checkLogin)
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
