@@ -9,6 +9,7 @@ class Controller{
     video.findOne({videoUrl})
     .then(response=>{
       if(response){
+        console.log(response);
         res.send(response)
       }else{
         throw 'video not found'
@@ -21,12 +22,17 @@ class Controller{
   static commentOnAVideo(req, res, next){
     //let userId = mongoose.Types.ObjectId(req.body.userId);
     let comment = req.body.comment || '';
-    let videoUrl = 'httpsaljs';
+    let vidId = req.params.video_id;
+    let token = req.body.token || '';
+    console.log(vidId);
+    console.log('asdasd');
     //let videoId = mongoose.Types.ObjectId(req.params.video_id);
-    video.findOne({videoUrl:videoUrl})
+    video.findOne({_id:vidId})
     .then(response=>{
       if(response){
-        response.comments.push({user:userId, comment});
+        console.log("before",response);
+        response.comments.push({token, content:comment});
+        console.log("after",response);
         response.save()
         .then(response=>{
           res.send('berhasil');

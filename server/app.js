@@ -15,6 +15,7 @@ mongoose.connect('mongodb://dimasgardenia:dimas1990@cluster0-shard-00-00-9kivf.m
 var index = require('./routes/index');
 var users = require('./routes/users');
 var stor = require('./routes/storageRoute')
+const comment = require('./routes/comment');
 
 var app = express();
 app.use(cors())
@@ -34,6 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 app.use('/api', stor)
+app.use('/comments', comment)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

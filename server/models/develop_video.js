@@ -1,18 +1,19 @@
 const mongoose = require('mongoose')
-
 const Schema = mongoose.Schema
+mongoose.Promise = global.Promise
 
 let CommentSchema = new Schema({
   user : {type:Schema.Types.ObjectId, ref:"User"},
-  content : {type:String},
-  token : String
+  comment : String,
+  createdAt: {type: Date, default:Date.now}
 })
 
 let VideoSchema = new Schema({
-  url: String,
-  filename : String,
+  title : String,
+  videoUrl : String,
   comments : [CommentSchema],
-  type: String
+  user : {type: Schema.Types.ObjectId, ref : "User"}
+
 })
 
 var Video = mongoose.model('Video', VideoSchema)
