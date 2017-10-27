@@ -4,9 +4,16 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var cors = require('cors')
+const Storage = require('@google-cloud/storage')
+const simpan = Storage()
+const mongoose = require('mongoose')
+
+mongoose.connect('mongodb://dimasgardenia:dimas1990@cluster0-shard-00-00-9kivf.mongodb.net:27017,cluster0-shard-00-01-9kivf.mongodb.net:27017,cluster0-shard-00-02-9kivf.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin')
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var stor = require('./routes/storageRoute')
 
 var app = express();
 
@@ -24,6 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/api', stor)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
