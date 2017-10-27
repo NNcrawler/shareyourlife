@@ -4,6 +4,20 @@ const mongoose = require('mongoose');
 const user = require('../models/user');
 
 class Controller{
+  static getCommentFromVideo(req, res, next){
+    let videoUrl = req.params.url;
+    video.findOne({videoUrl})
+    .then(response=>{
+      if(response){
+        res.send(response)
+      }else{
+        throw 'video not found'
+      }
+    }).catch(err=>{
+      res.send(err)
+    })
+  }
+
   static commentOnAVideo(req, res, next){
     //let userId = mongoose.Types.ObjectId(req.body.userId);
     let comment = req.body.comment || '';
