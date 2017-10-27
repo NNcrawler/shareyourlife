@@ -19,6 +19,7 @@ router.post('/post', video.multer.single('image'), video.sendUploadToGCS, (req, 
     url: req.file.cloudStoragePublicUrl,
     filename: req.file.cloudStorageObject,
     type: req.file.mimetype,
+    comment: req.body.comment
   })
   .then(data => {
     res.send({
