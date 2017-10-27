@@ -9,7 +9,7 @@ const Storage = require('@google-cloud/storage')
 const simpan = Storage()
 const mongoose = require('mongoose')
 
-mongoose.connect('mongodb://localhost/shareyourlife')
+mongoose.connect('mongodb://dimasgardenia:dimas1990@cluster0-shard-00-00-9kivf.mongodb.net:27017,cluster0-shard-00-01-9kivf.mongodb.net:27017,cluster0-shard-00-02-9kivf.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin')
 
 var index = require('./routes/index');
 var users = require('./routes/users');
